@@ -1,0 +1,26 @@
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:include src="/templates/menu.xhtml" />
+        <h1>Adicionar Tag</h1>
+        <h:form id="formTag">
+            
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+            
+            <p:panelGrid columns="2" id="gridTag">
+                <p:outputLabel value="Nome" />
+                <p:inputText value="#{tagMBean.bean.nome}" />
+                <p:commandButton value="Adicionar" action="#{tagMBean.adicionar()}" update="formTag"/>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>

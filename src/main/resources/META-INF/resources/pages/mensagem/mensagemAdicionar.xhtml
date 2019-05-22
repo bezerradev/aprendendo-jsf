@@ -1,0 +1,40 @@
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:include src="/templates/menu.xhtml" />
+        <h1>Adicionar Mensagem</h1>
+        <h:form id="formMensagem">
+
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+
+            <p:panelGrid columns="2" id="gridMensagem">
+
+                <p:outputLabel value="Título" />
+                <p:inputText value="#{mensagemMBean.bean.titulo}" />
+
+                <p:outputLabel value="Corpo do Texto" />
+                <p:textEditor value="#{mensagemMBean.bean.corpoTexto}" height="250"/>
+                
+                <p:outputLabel value="Tags:"/>
+                <p:autoComplete multiple="true" value="#{mensagemMBean.tags}" completeMethod="#{tagAutoComplete.completeTagContains}"
+                                var="tag" itemLabel="#{tag.nome}" itemValue="#{tag}" converter="#{tagConverter}">
+                                <!--var="tag" itemLabel="#{tag.nome}" itemValue="#{tag}" converter="br.com.aprendendojsf.view.TagConverter">-->
+                    <p:column>
+                        <h:outputText value="#{tag.nome}" />
+                    </p:column>
+                </p:autoComplete>
+
+                <p:commandButton value="Adicionar" action="#{mensagemMBean.adicionar()}" update="formMensagem"/>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
